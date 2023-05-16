@@ -1,0 +1,255 @@
+insert into deposit(actno,cname,bname,amount,adate)
+    ->        values ('100','anil','vrce',1000,'1995-03-04'),
+    ->          ('101','sunil','mgroad',5000,'1975-03-04'),
+    ->       ('102','rahul','mgroad3',5000,'1999-03-04'),
+    ->         ('103','madhuri' ,'mgroad',7000,'1996-03-04'),
+    ->          ('104','parmod' ,'mgroad',9000,'1997-03-04'),
+    ->        ('104','sandip' ,'karolbagh',10000,'1998-03-04');
+
+
+mysql>   select * from deposit;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 100   | anil    | vrce      |   1000 | 1995-03-04 |
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
++-------+---------+-----------+--------+------------+
+
+
+ 
+
+insert into branch(bname,city)
+    -> values('karolbagh','delhi'),
+    ->       ('chandni','delhi'),
+    ->
+    ->        ('mgroad','banglore');
+
+
+mysql> select * from branch;
++-----------+----------+
+| BNAME     | CITY     |
++-----------+----------+
+| karolbagh | delhi    |
+| chandni   | delhi    |
+| mgroad    | banglore |
++-----------+----------+
+
+insert into customers(cname,city)
+    ->      values('anil' ,'calcuta'),
+    ->            ('rahul','baroda'),
+    ->            ('madhuri','nagpur'),
+    ->            ('parmod' ,'nagpur'),
+    ->            ('sunil' ,'delhi');
+
+
+mysql> desc customers;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| cname | varchar(20) | YES  |     | NULL    |       |
+| city  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+
+mysql> select * from customers;
++---------+---------+
+| cname   | city    |
++---------+---------+
+| anil    | calcuta |
+| rahul   | baroda  |
+| madhuri | nagpur  |
+| parmod  | nagpur  |
+| sunil   | delhi   |
++---------+---------+
+
+insert into borrow(loanNo,cname,bname,amount)
+       values('201','anil','vrce',1000),
+        ('203','rahul','karolbagh',3000),
+        ('206','sunil','mgroad',4000),
+         ('311','madhuri','chandni',7000),
+     ('375' ,'pramod','mgroad',9000);
+    
+
+
+operation start******************************
+ SELECT * FROM BORROW WHERE amount >= 2000 AND amount <= 3000;
++--------+-------+-----------+--------+
+| LOANNO | CNAME | BNAME     | AMOUNT |
++--------+-------+-----------+--------+
+| 203    | rahul | karolbagh |   3000 |
++--------+-------+-----------+--------+
+    
+ SELECT * FROM DEPOSIT;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 100   | anil    | vrce      |   1000 | 1995-03-04 |
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
++-------+---------+-----------+--------+------------+
+
+ SELECT CNAME, ACTNO FROM DEPOSIT;
++---------+-------+
+| CNAME   | ACTNO |
++---------+-------+
+| anil    | 100   |
+| sunil   | 101   |
+| rahul   | 102   |
+| madhuri | 103   |
+| parmod  | 104   |
+| sandip  | 104   |
++---------+-------+
+
+
+select cname from customers where city='nagpur';
++---------+
+| cname   |
++---------+
+| madhuri |
+| parmod  |
++---------+
+
+
+select cname
+    -> from deposit
+    -> where adate > '1994-03-04';
++---------+
+| cname   |
++---------+
+| anil    |
+| rahul   |
+| madhuri |
+| parmod  |
+| sandip  |
++---------+
+
+ select actno,amount from deposit
+    ->      where adate >'1991-05-03' and adate < '1995-05-03';
++-------+--------+
+| actno | amount |
++-------+--------+
+| 100   |   1000 |
++-------+--------+
+
+select * from deposit
+    -> where cname like 'c%';
+Empty set (0.00 sec)
+
+ select * from deposit
+    -> where substr(cname,2,1)='u';
++-------+-------+--------+--------+------------+
+| ACTNO | CNAME | BNAME  | AMOUNT | ADATE      |
++-------+-------+--------+--------+------------+
+| 101   | sunil | mgroad |   5000 | 1975-03-04 |
++-------+-------+--------+--------+------------+
+1 row in set (0.00 sec)
+
+
+SELECT *
+    -> FROM DEPOSIT
+    -> WHERE BNAME IN ('CHANDNI', 'MGROAD');
++-------+---------+--------+--------+------------+
+| ACTNO | CNAME   | BNAME  | AMOUNT | ADATE      |
++-------+---------+--------+--------+------------+
+| 101   | sunil   | mgroad |   5000 | 1975-03-04 |
+| 103   | madhuri | mgroad |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad |   9000 | 1997-03-04 |
++-------+---------+--------+--------+------------+
+
+ SELECT *
+    -> FROM DEPOSIT
+    -> WHERE BNAME NOT IN ('CHANDNI', 'MGROAD');
++-------+--------+-----------+--------+------------+
+| ACTNO | CNAME  | BNAME     | AMOUNT | ADATE      |
++-------+--------+-----------+--------+------------+
+| 100   | anil   | vrce      |   1000 | 1995-03-04 |
+| 102   | rahul  | mgroad3   |   5000 | 1999-03-04 |
+| 104   | sandip | karolbagh |  10000 | 1998-03-04 |
++-------+--------+-----------+--------+------------+
+
+ select * from deposit
+    -> where amount >1000 order by cname asc;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
++-------+---------+-----------+--------+------------+
+
+select * from deposit
+    -> where amount >1000 order by cname desc;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
++-------+---------+-----------+--------+------------+
+
+SELECT *
+    -> FROM BORROW
+    -> WHERE SUBSTR(CNAME, 3, 1) IN ('A', 'D');
++--------+---------+---------+--------+
+| LOANNO | CNAME   | BNAME   | AMOUNT |
++--------+---------+---------+--------+
+| 311    | madhuri | chandni |   7000 |
+| 375    | pramod  | mgroad  |   9000 |
++--------+---------+---------+--------+
+
+SELECT * from borrow
+    -> where amount not between 2000 and 7000;
++--------+--------+--------+--------+
+| LOANNO | CNAME  | BNAME  | AMOUNT |
++--------+--------+--------+--------+
+| 201    | anil   | vrce   |   1000 |
+| 375    | pramod | mgroad |   9000 |
++--------+--------+--------+--------+
+
+UPDATE deposit
+    -> SET amount = amount * 1.1
+    -> WHERE bname = 'VRCE';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from deposit;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 100   | anil    | vrce      |   1100 | 1995-03-04 |
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
++-------+---------+-----------+--------+------------+
+
+
+UPDATE deposit
+    -> SET amount = amount * 1.1
+    -> WHERE bname = 'VRCE' AND cname = 'ANIL';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from deposit;
++-------+---------+-----------+--------+------------+
+| ACTNO | CNAME   | BNAME     | AMOUNT | ADATE      |
++-------+---------+-----------+--------+------------+
+| 100   | anil    | vrce      |   1210 | 1995-03-04 |
+| 101   | sunil   | mgroad    |   5000 | 1975-03-04 |
+| 102   | rahul   | mgroad3   |   5000 | 1999-03-04 |
+| 103   | madhuri | mgroad    |   7000 | 1996-03-04 |
+| 104   | parmod  | mgroad    |   9000 | 1997-03-04 |
+| 104   | sandip  | karolbagh |  10000 | 1998-03-04 |
++-------+---------+-----------+--------+------------+

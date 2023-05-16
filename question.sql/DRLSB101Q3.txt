@@ -1,0 +1,60 @@
+ create TABLE deposit( //**********************************************************
+    ACTNO VARCHAR(25),
+    CNAME VARCHAR(20),
+     BNAME VARCHAR(20),
+     AMOUNT INT,
+    ADATE DATE
+     );
+ DESC DEPOSIT;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| ACTNO  | varchar(25) | YES  |     | NULL    |       |
+| CNAME  | varchar(20) | YES  |     | NULL    |       |
+| BNAME  | varchar(20) | YES  |     | NULL    |       |
+| AMOUNT | int         | YES  |     | NULL    |       |
+| ADATE  | date        | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+CREATE TABLE BRANCH(BNAME VARCHAR(20),//*******************************************
+     CITY VARCHAR(20)
+    );
+
+DESC BRANCH;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| BNAME | varchar(20) | YES  |     | NULL    |       |
+| CITY  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+CREATE TABLE CUSTOMER(CNAME VARCHAR(20),//*****************************************
+    BANME VARCHAR(20),
+     CITY VARCHAR(20)
+    );
+
+ DESC CUSTOMER;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| CNAME | varchar(20) | YES  |     | NULL    |       |
+| BANME | varchar(20) | YES  |     | NULL    |       |
+| CITY  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+ CREATE TABLE BORROW(LOANNO VARCHAR(5),//***************************************************************
+    -> CNAME VARCHAR(20),
+    -> BNAME VARCHAR(20),
+    -> AMOUNT INT
+    -> );
+
+
+mysql> DESC BORROW;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| LOANNO | varchar(5)  | YES  |     | NULL    |       |
+| CNAME  | varchar(20) | YES  |     | NULL    |       |
+| BNAME  | varchar(20) | YES  |     | NULL    |       |
+| AMOUNT | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+

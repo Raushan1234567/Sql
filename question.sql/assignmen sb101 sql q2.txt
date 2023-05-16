@@ -1,0 +1,134 @@
+ create database Event_managment;//*********************************
+
+create table event(EvnetId int Primary key,//**************
+    -> event varchar(50),
+    -> dateEvent Date,
+    -> NumPerformers int
+    -> );
+
+
+mysql> desc event;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| EvnetId       | int         | NO   | PRI | NULL    |       |
+| event         | varchar(50) | YES  |     | NULL    |       |
+| dateEvent     | date        | YES  |     | NULL    |       |
+| NumPerformers | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+
+alter table event add column  address varchar(500);//************************************
+
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EvnetId       | int          | NO   | PRI | NULL    |       |
+| event         | varchar(50)  | YES  |     | NULL    |       |
+| dateEvent     | date         | YES  |     | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+alter table event rename column event to eventName;//************************************
+
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EvnetId       | int          | NO   | PRI | NULL    |       |
+| eventName     | varchar(50)  | YES  |     | NULL    |       |
+| dateEvent     | date         | YES  |     | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+ alter table event modify column dateevent date not null;//*************************
+
+
+mysql> alter table event modify column eventname varchar(50) not null;//****************************************
+
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EvnetId       | int          | NO   | PRI | NULL    |       |
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateevent     | date         | NO   |     | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+ alter table event drop primary key;//***************************************************************
+
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EvnetId       | int          | NO   |     | NULL    |       |
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateevent     | date         | NO   |     | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+alter table event//****************************************
+    -> modify column dateevent date not null unique;//**************
+
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| EvnetId       | int          | NO   |     | NULL    |       |
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateevent     | date         | NO   | PRI | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+ALTER TABLE event//*************************************************************************
+    -> DROP COLUMN EvnetId;
+
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateevent     | date         | NO   | PRI | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+
+alter table event add column id int after address;//*******************************************************
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateevent     | date         | NO   | PRI | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
+| id            | int          | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+ alter table event modify column dateEvent datetime not null;
+
+mysql> desc event;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| eventname     | varchar(50)  | NO   |     | NULL    |       |
+| dateEvent     | datetime     | NO   | PRI | NULL    |       |
+| NumPerformers | int          | YES  |     | NULL    |       |
+| address       | varchar(500) | YES  |     | NULL    |       |
+| id            | int          | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+
+ drop table event;
+drop database event_managment;
+
+****************************************end********************************************************

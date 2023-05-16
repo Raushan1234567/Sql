@@ -1,0 +1,155 @@
+create database practice;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| p2                 |
+| performance_schema |
+| practice           |
+| raush              |
+| sys                |
++--------------------+
+  use practice;  //move to database
+Database changed
+mysql> create table menu(itemcode varchar(5) primary key,
+    ->      itemname varchar(20),
+    ->      category varchar(20),
+    ->      price decimal(5,2)
+    ->     );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc menu;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| itemcode | varchar(5)   | NO   | PRI | NULL    |       |
+| itemname | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+ alter table menu add(qauntity int);//*********************************************
+
+
+
+mysql> desc menu;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| itemcode | varchar(5)   | NO   | PRI | NULL    |       |
+| itemname | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+ ALTER TABLE menu RENAME COLUMN itemname to name;//******************************
+
+
+mysql> desc menu;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| itemcode | varchar(5)   | NO   | PRI | NULL    |       |
+| name     | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+ ALTER TABLE menu add COLUMN validity date first ;//********************************
+
+
+mysql> desc menu;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| validity | date         | YES  |     | NULL    |       |
+| itemcode | varchar(5)   | NO   | PRI | NULL    |       |
+| name     | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+
+ alter table menu rename to menu_card;//*********************************
+
+
+mysql> desc menu_card;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| validity | date         | YES  |     | NULL    |       |
+| itemcode | varchar(5)   | NO   | PRI | NULL    |       |
+| name     | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+ ALTER TABLE menu_card modify itemcode int;//***************************8
+
+
+mysql> desc menu_card;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| validity | date         | YES  |     | NULL    |       |
+| itemcode | int          | NO   | PRI | NULL    |       |
+| name     | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+alter table menu_card drop column validity;//*****************************************************
+
+
+mysql> desc menu_card;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| itemcode | int          | NO   | PRI | NULL    |       |
+| name     | varchar(20)  | YES  |     | NULL    |       |
+| category | varchar(20)  | YES  |     | NULL    |       |
+| price    | decimal(5,2) | YES  |     | NULL    |       |
+| qauntity | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+
+ menu_card rename  quantity to itemquantity; ALTER TABLE menu_card RENAME COLUMN qauntity to itemuantity;
+
+
+ ALTER TABLE menu_card MODIFY name VARCHAR(255) NOT NULL UNIQUE;
+
+mysql> desc menu_card;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| itemcode    | int          | NO   | PRI | NULL    |       |
+| name        | varchar(255) | NO   | UNI | NULL    |       |
+| category    | varchar(20)  | YES  |     | NULL    |       |
+| price       | decimal(5,2) | YES  |     | NULL    |       |
+| itemuantity | int          | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+
+
+ALTER TABLE menu_card ALTER COLUMN itemuantity SET DEFAULT 1;
+
+
+mysql> desc menu_card;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| itemcode    | int          | NO   | PRI | NULL    |       |
+| name        | varchar(255) | NO   | UNI | NULL    |       |
+| category    | varchar(20)  | YES  |     | NULL    |       |
+| price       | decimal(5,2) | YES  |     | NULL    |       |
+| itemuantity | int          | YES  |     | 1       |       |
++-------------+--------------+------+-----+---------+-------+
+mysql> drop table menu_card;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop database practice;
+Query OK, 0 rows affected (0.01 sec)
